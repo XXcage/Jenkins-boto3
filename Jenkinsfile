@@ -17,21 +17,21 @@ pipeline {
     }
 
     stage('Lint Test') {
-      steps {
-        script {
-          def lint_output = docker.image('my-image:latest').inside {
-            sh 'pylint Linting.py'
-          }
+        steps {
+            script {
+            def lint_output = docker.image('my-image:latest').inside {
+                sh 'pylint Linting.py'
+            }
 
-          if (lint_output.contains('Your code has been rated at 10.00')):
-            echo 'Lint test passed!'
-          else:
-            echo "WARNING: Lint test failed. Lint output: \n${lint_output}"
-          }
+                if (lint_output.contains('Your code has been rated at 10.00')) {
+                    echo 'Lint test passed!'
+                } else {
+                echo "WARNING: Lint test failed. Lint output: \n${lint_output}"
+                }
+            }
         }
-      }
     }
-
+    
     stage('Push Docker Image to Dockerhub') {
       steps {
         script {
@@ -50,3 +50,4 @@ pipeline {
     }
   }
 }
+
