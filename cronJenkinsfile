@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    triggers {
+        cron('*/5 * * * *')
+    }
+    stages {
+        stage('Run Python Script') {
+            environment {
+                DOCKER_IMAGE = 'mydockerhubusername/myimage:latest'
+            }
+            steps {
+                script {
+                    docker.image(DOCKER_IMAGE).inside {
+                        sh 'python myscript.py'
+                    }
+                }
+            }
+        }
+    }
+}
