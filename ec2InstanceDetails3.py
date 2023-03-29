@@ -17,4 +17,4 @@ for reservation in response['Reservations']:
                 instance_name = tag['Value']
         # Check if the instance is in a stopped state
         if instance_state == 'stopped':
-            print(f'Instance ID: {instance_id} | Instance Name: {instance_name}')
+            print('Instance ID: {} | Instance Name: {}'.format(instance_id, instance_name))
