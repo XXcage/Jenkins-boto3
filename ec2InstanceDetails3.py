@@ -4,11 +4,11 @@ import boto3
 ec2 = boto3.client('ec2')
 
 # get all instances and filter by running instances
-instances = ec2.describe_instances(Filters=[{'Name': 'instance-state-name', 'Values': ['running']}])
+instances = ec2.describe_instances(Filters=[{'Name': 'instance-state-name', 'Values': ['stopped']}])
 
 # check if there are no running instances
 if len(instances['Reservations']) == 0:
-    print('There are no running instances')
+    print('There are no stopped instances')
 else:
     # print details of each running instance
     for reservation in instances['Reservations']:
