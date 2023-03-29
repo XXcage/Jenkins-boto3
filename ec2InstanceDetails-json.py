@@ -18,7 +18,7 @@ else:
             instance_id = instance['InstanceId']
             instance_name = ''
             for tag in instance['Tags']:
-                if tag['Key'] == 'Name':
+                if tag['Key'] == 'ec2forProj3':
                     instance_name = tag['Value']
             instance_details = {
                 'InstanceId': instance_id,
