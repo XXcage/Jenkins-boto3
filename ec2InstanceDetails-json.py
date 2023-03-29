@@ -21,12 +21,12 @@ else:
             for tag in instance['Tags']:
                 if tag['Key'] == 'Name':
                     instance_name = tag['Value']
-                elif tag['Key'] == 'RZTAG':
-                    rztag_value = tag['Value']
+                elif tag['Key'] == 'ec2forProj3':
+                    tag_value = tag['Value']
             instance_details = {
                 'InstanceId': instance_id,
                 'InstanceName': instance_name,
-                'RZTAG': rztag_value,
+                'ec2forProj3': tag_value,
                 'State': instance['State']['Name'],
                 'PrivateIpAddress': instance['PrivateIpAddress'],
                 'LaunchTime': str(instance['LaunchTime'])
