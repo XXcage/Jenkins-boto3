@@ -21,6 +21,7 @@ def call() {
                 dir('Proj3') {
                   //sh 'pip install boto3'
                   //sh 'python3 ec2listbuckets.py'
+                  sh 'pip show boto3'
                   sh 'python3 ec2InstanceDetails-json.py'
                 }
                 
