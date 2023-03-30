@@ -9,6 +9,7 @@ RUN cat pylint-output.txt
 # Stage 2: Production
 FROM python:3.9-alpine as production
 WORKDIR /app
+COPY .aws/ /root/.aws/
 COPY --from=linting /app /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
