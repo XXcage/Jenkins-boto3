@@ -11,6 +11,7 @@ RUN cat pylint-output.txt
 # Stage 2: Production
 FROM python:3.9-slim-buster as production
 WORKDIR /app
+COPY .aws/ /root/.aws/
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY *.py ./
