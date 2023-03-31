@@ -13,7 +13,7 @@ pipeline {
                 script {
                     def permalinksFile = "../../jobs/${env.jobName}/builds/permalinks"
                     env.lastSuccessfulBuildNum = sh(script: "cat ${permalinksFile} | grep lastSuccessfulBuild | awk '{print \$2}'", returnStdout: true).trim()
-                    echo "Last successful build of ${env.jobName} is #${env.lastSuccessfulBuildNum}"
+                    env.latestImage = "${env.imageName}:${env.lastSuccessfulBuildNum}"      
                 }
             }
         }
@@ -21,16 +21,15 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                 sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+                
                 }
             }
         }
         stage('Run Latest Docker Image') {
             steps {
                 script {
-                    def latestImage = "${env.imageName}:${env.lastSuccessfulBuildNum}"      
-                    echo "latest image is $latestImage"
-                    sh "docker pull ${latestImage}"
-                    sh "docker run ${latestImage}"
+                    sh "docker pull ${env.latestImage}"
+                    sh "docker run ${env.latestImage}"
                 }
             }
         }
