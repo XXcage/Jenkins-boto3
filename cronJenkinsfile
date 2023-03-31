@@ -21,10 +21,13 @@ pipeline {
         // }
         stage('pipeline number') {
             steps {
-                sh """
-                curl -sSfL http://jenkins-url/job/pipe3/lastBuild/buildNumber > last_build_number.txt
-                """
-                def lastBuildNumber = readFile('last_build_number.txt').trim()
+                script {
+                 sh """
+                 curl -sSfL http://jenkins-url/job/pipe3/lastBuild/buildNumber > last_build_number.txt
+                    """
+                    def lastBuildNumber = readFile('last_build_number.txt').trim()
+                }
+
             }
         }
         stage('Get Last Build Number') {
