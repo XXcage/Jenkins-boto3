@@ -19,6 +19,18 @@ pipeline {
         //         }
         //     }
         // }
+        stage('pipeline number') {
+            steps {
+                script {
+                    def jenkinsUrl = "http://172.16.16.16"
+                    def jobName = "pipe3"
+                    def buildNumberUrl = "${jenkinsUrl}/job/${jobName}/lastBuild/buildNumber"
+                    def lastBuildNumber = sh(script: "curl -sSfL ${buildNumberUrl}", returnStdout: true).trim()
+                    echo "Last build number of ${jobName} is ${lastBuildNumber}"
+                }
+            }
+        }
+
         stage('Get Last Build Number') {
             steps {
                 script {
