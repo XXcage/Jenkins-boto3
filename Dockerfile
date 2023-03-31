@@ -1,7 +1,8 @@
 # Stage 1: Linting
 FROM python:3.9-slim-buster as linting
 WORKDIR /app
-RUN pip install pylint
+RUN pip install pylint && \
+    pip install -r requirements.txt
 COPY *.py ./
 RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt || exit 0
 # RUN cat pylint-output.txt
