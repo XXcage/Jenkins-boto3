@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     def latestImage = "${env.imageName}:${env.lastSuccessfulBuildNum}"      
-                    echo "$latestImage"
+                    echo "latest image is $latestImage"
                     docker.image(latestImage).pull()
                     docker.image(latestImage).run()
                 }
