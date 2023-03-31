@@ -19,6 +19,14 @@ pipeline {
         //         }
         //     }
         // }
+        stage('Get Last Build Number') {
+            steps {
+                script {
+                    def buildNum = sh(script: "curl -s 'http://172.16.16.16/job/pipe3/lastBuild/buildNumber'", returnStdout: true).trim()
+                    echo "Last build number for pipe3 is ${buildNum}"
+                }
+            }
+        }
         stage('pipeline number') {
             steps {
                 script {
@@ -28,14 +36,7 @@ pipeline {
 
             }
         }
-        stage('Get Last Build Number') {
-            steps {
-                script {
-                    def buildNum = sh(script: "curl -s 'http://172.16.16.16/job/pipe3/lastBuild/buildNumber'", returnStdout: true).trim()
-                    echo "Last build number for pipe3 is ${buildNum}"
-                }
-            }
-        }
+
     }
 }
  
