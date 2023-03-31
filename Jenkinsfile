@@ -15,8 +15,6 @@ pipeline {
     }
     stage('Build Docker Image') {
       steps {
-        sh "pwd"
-        sh "ls -la"
         dir('Proj3') {
           script {
             sh "pwd"
@@ -28,8 +26,6 @@ pipeline {
 
     stage('DockerHub Login') {
       steps {
-        sh "pwd"
-        sh "ls -la"
         withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
           sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
         }
