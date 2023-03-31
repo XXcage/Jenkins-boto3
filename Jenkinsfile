@@ -17,12 +17,12 @@ pipeline {
       steps {
         sh "pwd"
         sh "ls -la"
-//        dir('Proj3') {
+        dir('Proj3') {
           script {
             sh "pwd"
             sh "docker build -t ${env.IMAGE_NAME} ."
           }      
-//        }
+        }
       }
     }
 
