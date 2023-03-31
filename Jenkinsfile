@@ -1,7 +1,6 @@
 pipeline {
   agent any
   environment {
-    //DOCKER_HOST = "unix:///var/run/docker.sock"
     IMAGE_NAME = 'rzlinux0/proj3:${BUILD_NUMBER}'
     awsPath = "/var/jenkins_home/.aws"
   }
@@ -16,8 +15,10 @@ pipeline {
     }
     stage('Build Docker Image') {
       steps {
+        sh "pwd"
         dir('Proj3') {
           script {
+            sh "pwd"
             sh "docker build -t ${env.IMAGE_NAME} ."
           }      
         }
@@ -26,6 +27,7 @@ pipeline {
 
     stage('DockerHub Login') {
       steps {
+        sh "pwd"
         withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
           sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
         }
