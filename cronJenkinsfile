@@ -12,7 +12,7 @@ pipeline {
         stage('Get Last Successful Build') {
             steps {
                 script {
-                    def permalinksFile = "../../jobs/${jobName}/builds/permalinks"
+                    def permalinksFile = "../../jobs/${env.jobName}/builds/permalinks"
                     env.lastSuccessfulBuildNum = sh(script: "cat ${permalinksFile} | grep lastSuccessfulBuild | awk '{print \$2}'", returnStdout: true).trim()
                     echo "Last successful build of ${env.jobName} is #${env.lastSuccessfulBuildNum}"
                 }
