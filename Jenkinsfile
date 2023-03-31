@@ -25,25 +25,27 @@ pipeline {
       steps {
         dir('Proj3') {
           script {
-            sh "pwd"
-            sh "ls -la"
-            def buildNumber = env.BUILD_NUMBER ?: 'unknown'
-            def imageName = "rzlinux0/proj3:${buildNumber}"
-            echo "Image name is: ${imageName}"
-            sh "docker build -t ${imageName} ."
-            env.IMAGE_NAME = imageName
+            sh "echo ${env.IMAGE_NAME}"
+            //sh "pwd"
+            //sh "ls -la"
+            //def buildNumber = env.BUILD_NUMBER ?: 'unknown'
+            //def imageName = "rzlinux0/proj3:${buildNumber}"
+            //echo "Image name is: ${imageName}"
+            //sh "docker build -t ${imageName} ."
+            sh "docker build -t ${env.IMAGE_NAME} ."
+            //env.IMAGE_NAME = imageName
           }      
         }
       }
     }
-    stage('Deploy to Staging') {
-      steps {
-        script {
-          sh "echo ${env.IMAGE_NAME}"
-          // deploy the image to staging
-        }
-      }
-    }
+//     stage('Deploy to Staging') {
+//       steps {
+//         script {
+//           sh "echo ${env.IMAGE_NAME}"
+//           // deploy the image to staging
+//         }
+//       }
+//     }
     stage('DockerHub Login') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
