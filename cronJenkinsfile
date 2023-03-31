@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     def imageName = DOCKER_IMAGE.split(':')[0]
-                    def latestTag = sh(script: "docker search --format '{{.Tag}}' ${imageName} | sort -r | head -n 1", returnStdout: true).trim()
+                    def latestTag = sh(script: "docker images --format '{{.Tag}}' --no-trunc ${imageName} | sort -r | head -n 1", returnStdout: true).trim()
                     def latestImage = "${imageName}:${latestTag}"
                     
                     docker.image(latestImage).pull()
