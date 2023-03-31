@@ -1,5 +1,5 @@
-import boto3
 import json
+import boto3
 
 # create an EC2 client
 ec2 = boto3.client('ec2')
