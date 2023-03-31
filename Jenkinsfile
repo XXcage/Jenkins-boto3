@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    DOCKER_HOST = "unix:///var/run/docker.sock"
+    //DOCKER_HOST = "unix:///var/run/docker.sock"
     IMAGE_NAME = 'rzlinux0/proj3:${BUILD_NUMBER}'
     awsPath = "/var/jenkins_home/.aws"
   }
@@ -15,11 +15,6 @@ pipeline {
     stage('.aws config and credentials') {
       steps {
         script {
-          //echo "Image name is: ${imageName}"
-          //sh "pwd"
-          //sh "ls -la"
-          //def awsPath = "/var/jenkins_home/.aws"
-          //sh "cp -r ${awsPath} Proj3/"
           sh "cp -r ${env.awsPath} Proj3/"
         }
       }
@@ -28,14 +23,7 @@ pipeline {
       steps {
         dir('Proj3') {
           script {
-            // sh "pwd"
-            // sh "ls -la"
-            //def buildNumber = env.BUILD_NUMBER ?: 'unknown'
-            //def imageName = "rzlinux0/proj3:${buildNumber}"
-            //echo "Image name is: ${imageName}"
-            //sh "docker build -t ${imageName} ."
             sh "docker build -t ${env.IMAGE_NAME} ."
-            //env.IMAGE_NAME = imageName
           }      
         }
       }
@@ -44,7 +32,6 @@ pipeline {
       steps {
         script {
           sh "echo ${env.IMAGE_NAME}"
-          // deploy the image to staging
         }
       }
     }
