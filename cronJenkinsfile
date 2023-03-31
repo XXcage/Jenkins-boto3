@@ -19,35 +19,44 @@ pipeline {
         //         }
         //     }
         // }
-        stage('pipeline number1') {
+        stage('Get last successful build from permalink') {
             steps {
                 script {
-                    def jenkinsUrl = "http://172.16.16.16"
-                    def jobName = "pipe3"
-                    def buildNumberUrl = "${jenkinsUrl}/job/${jobName}/lastBuild/buildNumber"
-                    def lastBuildNumber = sh(script: "curl -sSfL ${buildNumberUrl}", returnStdout: true).trim()
-                    echo "Last build number of ${jobName} is ${lastBuildNumber}"
+                    def jobName = 'Dockerfile'
+                    def lastSuccessfulBuildNum = sh(script: "cat ../../jobs/${jobName}/builds/permalinks | grep lastSuccessfulBuild | awk '{print \$2}'", returnStdout: true).trim()
+                    echo "Last successful build of ${jobName} is #${lastSuccessfulBuildNum}"
                 }
             }
         }
+        // stage('pipeline number1') {
+        //     steps {
+        //         script {
+        //             def jenkinsUrl = "http://172.16.16.16"
+        //             def jobName = "pipe3"
+        //             def buildNumberUrl = "${jenkinsUrl}/job/${jobName}/lastBuild/buildNumber"
+        //             def lastBuildNumber = sh(script: "curl -sSfL ${buildNumberUrl}", returnStdout: true).trim()
+        //             echo "Last build number of ${jobName} is ${lastBuildNumber}"
+        //         }
+        //     }
+        // }
 
-        stage('Get Last Build Number') {
-            steps {
-                script {
-                    def buildNum = sh(script: "curl -s 'http://172.16.16.16/job/pipe3/lastBuild/buildNumber'", returnStdout: true).trim()
-                    echo "Last build number for pipe3 is ${buildNum}"
-                }
-            }
-        }
-        stage('pipeline number') {
-            steps {
-                script {
-                 sh "curl -sSfL http://172.16.16.16/job/pipe3/lastBuild/buildNumber > last_build_number.txt"
-                    def lastBuildNumber = readFile('last_build_number.txt').trim()
-                }
+        // stage('Get Last Build Number') {
+        //     steps {
+        //         script {
+        //             def buildNum = sh(script: "curl -s 'http://172.16.16.16/job/pipe3/lastBuild/buildNumber'", returnStdout: true).trim()
+        //             echo "Last build number for pipe3 is ${buildNum}"
+        //         }
+        //     }
+        // }
+        // stage('pipeline number') {
+        //     steps {
+        //         script {
+        //          sh "curl -sSfL http://172.16.16.16/job/pipe3/lastBuild/buildNumber > last_build_number.txt"
+        //             def lastBuildNumber = readFile('last_build_number.txt').trim()
+        //         }
 
-            }
-        }
+        //     }
+        // }
 
     }
 }
