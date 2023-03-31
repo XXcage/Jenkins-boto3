@@ -3,32 +3,30 @@ pipeline {
     triggers {
         cron('*/5 * * * *')
     }
+    environment {
+        imageName = 'rzlinux0/proj3:latest'
+    }
     stages {
-        stage('Get last successful build from permalink') {
+        stage('Get Last Successful Build') {
             steps {
                 script {
-                    def jobName = 'Dockerfile'
-                    def lastSuccessfulBuildNum = sh(script: "cat ../../jobs/${jobName}/builds/permalinks | grep lastSuccessfulBuild | awk '{print \$2}'", returnStdout: true).trim()
+                    def jobName = 'pipe3'
+                    def permalinksFile = "../../jobs/${jobName}/builds/permalinks"
+                    env.lastSuccessfulBuildNum = sh(script: "cat ${permalinksFile} | grep lastSuccessfulBuild | awk '{print \$2}'", returnStdout: true).trim()
                     echo "Last successful build of ${jobName} is #${lastSuccessfulBuildNum}"
                 }
             }
         }
         stage('Run Latest Docker Image') {
-            environment {
-                DOCKER_IMAGE = 'rzlinux0/proj3:latest'
-            }
             steps {
                 script {
-                    def imageName = DOCKER_IMAGE.split(':')[0]
-                    def latestImage = "${imageName}:${lastSuccessfulBuildNum}"
-                    
+                    def latestImage = "${env.imageName}:${env.lastSuccessfulBuildNum}"                    
                     docker.image(latestImage).pull()
                     docker.image(latestImage).run()
                 }
             }
         }
-
-
     }
 }
- 
+
+
