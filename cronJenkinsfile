@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Run Latest Docker Image') {
             environment {
-                DOCKER_IMAGE = 'mydockerhubusername/myimage:latest'
+                DOCKER_IMAGE = 'rzlinux0/proj3:latest'
             }
             steps {
                 script {
