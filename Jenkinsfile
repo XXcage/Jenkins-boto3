@@ -24,18 +24,19 @@ pipeline {
       }
     }
 
-    stage('DockerHub Login') {
+    stage('DockerHub Login and push') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
           sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+          sh "docker push ${env.IMAGE_NAME}"
         }
       }
     }
-    stage('Push Docker Image') {
-      steps {
-        sh "docker push ${env.IMAGE_NAME}"
-      }
-    }
+    // stage('Push Docker Image') {
+    //   steps {
+    //     sh "docker push ${env.IMAGE_NAME}"
+    //   }
+    // }
     stage('Run cat pylint output') {
       steps {
         script {
