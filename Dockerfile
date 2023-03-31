@@ -2,6 +2,7 @@
 FROM python:3.9-slim-buster as linting
 WORKDIR /app
 RUN pip install pylint
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY *.py ./
 RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt || exit 0
