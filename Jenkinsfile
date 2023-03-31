@@ -3,6 +3,7 @@ pipeline {
   environment {
     DOCKER_HOST = "unix:///var/run/docker.sock"
     IMAGE_NAME = 'rzlinux0/proj3:${BUILD_NUMBER}'
+    awsPath = "/var/jenkins_home/.aws"
   }
   stages {
     stage('Checkout') {
@@ -14,10 +15,12 @@ pipeline {
     stage('.aws config and credentials') {
       steps {
         script {
-          sh "pwd"
-          sh "ls -la"
-          def awsPath = "/var/jenkins_home/.aws"
-          sh "cp -r ${awsPath} Proj3/"
+          //echo "Image name is: ${imageName}"
+          //sh "pwd"
+          //sh "ls -la"
+          //def awsPath = "/var/jenkins_home/.aws"
+          //sh "cp -r ${awsPath} Proj3/"
+          sh "cp -r ${env.awsPath} Proj3/"
         }
       }
     }
@@ -25,9 +28,8 @@ pipeline {
       steps {
         dir('Proj3') {
           script {
-            sh "echo ${env.IMAGE_NAME}"
-            //sh "pwd"
-            //sh "ls -la"
+            // sh "pwd"
+            // sh "ls -la"
             //def buildNumber = env.BUILD_NUMBER ?: 'unknown'
             //def imageName = "rzlinux0/proj3:${buildNumber}"
             //echo "Image name is: ${imageName}"
@@ -38,14 +40,14 @@ pipeline {
         }
       }
     }
-//     stage('Deploy to Staging') {
-//       steps {
-//         script {
-//           sh "echo ${env.IMAGE_NAME}"
-//           // deploy the image to staging
-//         }
-//       }
-//     }
+    stage('echo ENV Image name') {
+      steps {
+        script {
+          sh "echo ${env.IMAGE_NAME}"
+          // deploy the image to staging
+        }
+      }
+    }
     stage('DockerHub Login') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
