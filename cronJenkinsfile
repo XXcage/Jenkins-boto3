@@ -19,7 +19,7 @@ pipeline {
         //         }
         //     }
         // }
-        stage('pipeline number') {
+        stage('pipeline number1') {
             steps {
                 script {
                     def jenkinsUrl = "http://172.16.16.16"
