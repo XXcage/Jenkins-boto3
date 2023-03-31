@@ -4,15 +4,18 @@ pipeline {
         cron('*/5 * * * *')
     }
     stages {
-        stage('Run Python Script') {
+        stage('Run Latest Docker Image') {
             environment {
                 DOCKER_IMAGE = 'mydockerhubusername/myimage:latest'
             }
             steps {
                 script {
-                    docker.image(DOCKER_IMAGE).inside {
-                        sh 'python myscript.py'
-                    }
+                    def imageName = DOCKER_IMAGE.split(':')[0]
+                    def latestTag = sh(script: "docker search --format '{{.Tag}}' ${imageName} | sort -r | head -n 1", returnStdout: true).trim()
+                    def latestImage = "${imageName}:${latestTag}"
+                    
+                    docker.image(latestImage).pull()
+                    docker.image(latestImage).run()
                 }
             }
         }
