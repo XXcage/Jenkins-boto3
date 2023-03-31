@@ -4,18 +4,34 @@ pipeline {
         cron('*/5 * * * *')
     }
     stages {
-        stage('Run Latest Docker Image') {
-            environment {
-                DOCKER_IMAGE = 'rzlinux0/proj3:latest'
+        // stage('Run Latest Docker Image') {
+        //     environment {
+        //         DOCKER_IMAGE = 'rzlinux0/proj3:latest'
+        //     }
+        //     steps {
+        //         script {
+        //             def imageName = DOCKER_IMAGE.split(':')[0]
+        //             def latestTag = sh(script: "docker images --format '{{.Tag}}' --no-trunc ${imageName} | sort -r | head -n 1", returnStdout: true).trim()
+        //             def latestImage = "${imageName}:${latestTag}"
+                    
+        //             docker.image(latestImage).pull()
+        //             docker.image(latestImage).run()
+        //         }
+        //     }
+        // }
+        stage('pipeline number') {
+            steps {
+                sh """
+                curl -sSfL http://jenkins-url/job/pipe3/lastBuild/buildNumber > last_build_number.txt
+                """
+                def lastBuildNumber = readFile('last_build_number.txt').trim()
             }
+        }
+        stage('Get Last Build Number') {
             steps {
                 script {
-                    def imageName = DOCKER_IMAGE.split(':')[0]
-                    def latestTag = sh(script: "docker images --format '{{.Tag}}' --no-trunc ${imageName} | sort -r | head -n 1", returnStdout: true).trim()
-                    def latestImage = "${imageName}:${latestTag}"
-                    
-                    docker.image(latestImage).pull()
-                    docker.image(latestImage).run()
+                    def buildNum = sh(script: "curl -s 'http://jenkins-url/job/pipe3/lastBuild/buildNumber'", returnStdout: true).trim()
+                    echo "Last build number for pipe3 is ${buildNum}"
                 }
             }
         }
