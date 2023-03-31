@@ -6,17 +6,12 @@ pipeline {
     awsPath = "/var/jenkins_home/.aws"
   }
   stages {
-    stage('Checkout') {
+    stage('Checkout+aws creds') {
       steps {
         cleanWs()
         sh 'git clone -b main https://github.com/XXcage/Proj3.git'
-      }
-    }
-    stage('.aws config and credentials') {
-      steps {
-        script {
-          sh "cp -r ${env.awsPath} Proj3/"
-        }
+        sh "cp -r ${env.awsPath} Proj3/"
+
       }
     }
     stage('Build Docker Image') {
@@ -28,13 +23,7 @@ pipeline {
         }
       }
     }
-    stage('echo ENV Image name') {
-      steps {
-        script {
-          sh "echo ${env.IMAGE_NAME}"
-        }
-      }
-    }
+
     stage('DockerHub Login') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
