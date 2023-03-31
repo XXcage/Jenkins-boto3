@@ -22,9 +22,9 @@ pipeline {
         stage('pipeline number') {
             steps {
                 script {
-                 sh """
+                 sh "
                  curl -sSfL http://172.16.16.16/job/pipe3/lastBuild/buildNumber > last_build_number.txt
-                    """
+                    "
                     def lastBuildNumber = readFile('last_build_number.txt').trim()
                 }
 
