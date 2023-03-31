@@ -5,15 +5,16 @@ pipeline {
     }
     environment {
         imageName = 'rzlinux0/proj3:latest'
+        lastSuccessfulBuildNum = 'none'
+        jobname = 'Dockerfile'
     }
     stages {
         stage('Get Last Successful Build') {
             steps {
                 script {
-                    def jobName = 'Dockerfile'
                     def permalinksFile = "../../jobs/${jobName}/builds/permalinks"
                     env.lastSuccessfulBuildNum = sh(script: "cat ${permalinksFile} | grep lastSuccessfulBuild | awk '{print \$2}'", returnStdout: true).trim()
-                    echo "Last successful build of ${jobName} is #${lastSuccessfulBuildNum}"
+                    echo "Last successful build of ${env.jobName} is #${env.lastSuccessfulBuildNum}"
                 }
             }
         }
