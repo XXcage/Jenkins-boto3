@@ -14,6 +14,6 @@ jenkins/jenkins:lts-jdk11
     ___.aws___ folder for aws , with credentials and config files as per aws format  
     ___.dockerhub___ folder for dockerhub, with dockerhub-credentials.properties file that contains username and password  
 
-- [x] Write a blog
-- [x] Make it interesting
-- [ ] Publish it
+- [ ] Sonar
+- [ ] tidy
+- [ ] submit
