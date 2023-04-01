@@ -1,7 +1,7 @@
 # Proj3
 
 Jenkins:  
->- [x]sudo docker run -itd --name jenkins --restart=always \  
+- [x] >sudo docker run -itd --name jenkins --restart=always \  
 -p 8080:8080 -p 50000:50000 \  
 -v "/home/bckp/Desktop/jenkins:/var/jenkins_home" \  
 -v "/var/run/docker.sock:/var/run/docker.sock" \  
