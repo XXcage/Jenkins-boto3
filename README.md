@@ -7,7 +7,7 @@ sudo docker run -itd --name jenkins --restart=always \
 -v "/var/run/docker.sock:/var/run/docker.sock" \  
 jenkins/jenkins:lts-jdk11  
 
-//apt-get install -y python && apt-get install -y python3-pip  
+>//apt-get install -y python && apt-get install -y python3-pip  
 
 
   '/var/jenkins_home' contains credentials for aws and dockerhub  
