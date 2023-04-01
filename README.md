@@ -7,7 +7,7 @@ Jenkins:
 -v "/var/run/docker.sock:/var/run/docker.sock" \
 jenkins/jenkins:lts-jdk11  
 
-- [x]>//apt-get install -y python && apt-get install -y python3-pip  
+>- [x]//apt-get install -y python && apt-get install -y python3-pip  
 
 
   /var/jenkins_home contains credentials for aws and dockerhub  
