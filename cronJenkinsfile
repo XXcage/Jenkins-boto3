@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         imageName = 'rzlinux0/proj3'
-        jobName = 'Dockerfile'
+        jobName = 'Pipeline Build DockerFile-Run "Jenkinsfile" From Git'
     }
     stages {
         stage('Get Last Successful Build') {
