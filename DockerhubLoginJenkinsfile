@@ -1,0 +1,66 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Read DockerHub Credentials') {
+            steps {
+                script {
+                    // Read the DockerHub credentials from the properties file
+                    def dockerhubCredentials = readFile('/var/jenkins_home/.dockerhub/dockerhub-credentials.properties').trim()
+                    // Split the contents of the file into an array of lines
+                    def credentials = dockerhubCredentials.tokenize("\n")
+                    // Set the DockerHub username and password as environment variables
+                    env.DOCKERHUB_USERNAME = credentials[0].trim().split("=")[1].trim()
+                    env.DOCKERHUB_PASSWORD = credentials[1].trim().split("=")[1].trim()
+                    //env.DOCKERHUB_USERNAME = credentials[0].trim()
+                    //env.DOCKERHUB_PASSWORD = credentials[1].trim()
+                    echo "DOCKERHUB_USERNAME: ${env.DOCKERHUB_USERNAME}"
+                    echo "DOCKERHUB_PASSWORD: ${env.DOCKERHUB_PASSWORD}"
+                    // Read the DockerHub credentials from the properties file
+                    // def dockerhubCredentials = readFile('/var/jenkins_home/.dockerhub/dockerhub-credentials.properties').trim()
+                    // Parse the properties file into a map
+                    // def credentialsMap = [:]
+                    // dockerhubCredentials.eachLine { line ->
+                    //     def (key, value) = line.split('=')
+                    //     credentialsMap[key.trim()] = value.trim()
+                    // }
+                    // dockerhubCredentials.eachLine { line ->
+                    //     println("Line: [${line}]")
+                    //     def (key, value) = line.split('=')
+                    //     println("Key: [${key}]")
+                    //     println("Value: [${value}]")
+                    //     credentialsMap[key.trim()] = value.trim()
+                    // }
+                    // dockerhubCredentials.eachLine { line ->
+                    //     def (key, value) = line.split('=').collect { it.trim() }
+                    //     credentialsMap[key] = value
+                    // }
+                    // echo "Parsed credentialsMap: ${credentialsMap}"
+                    // sh "echo credentialsMap: ${credentialsMap}"
+                    // sh "echo DOCKERHUB_Username value: ${credentialsMap['DOCKER_USERNAME']}"
+                    // sh "echo DOCKERHUB_PASSWORD value: ${credentialsMap['DOCKER_PASSWORD']}"
+                    // Set the DockerHub username and password as environment variables
+                    // env.DOCKERHUB_USERNAME = credentialsMap['DOCKER_USERNAME']
+                    // env.DOCKERHUB_PASSWORD = credentialsMap['DOCKER_PASSWORD']
+                    // echo "DOCKERHUB_PASSWORD value: ${env.DOCKERHUB_PASSWORD}"
+                    // sh "echo DOCKERHUB_USERNAME: $DOCKERHUB_USERNAME"
+                    // sh "echo DOCKERHUB_PASSWORD: $DOCKERHUB_PASSWORD"
+                    // sh "echo DOCKERHUB_PASSWORD value: ${credentialsMap['DOCKER_PASSWORD']}"
+    
+                }
+            }
+        }
+
+        // stage('Docker Login') {
+        //     steps {
+        //         // Authenticate with DockerHub using the dockerLogin step
+        //         dockerLogin(
+        //             registry: 'https://index.docker.io/v1/',
+        //             username: env.DOCKERHUB_USERNAME,
+        //             password: env.DOCKERHUB_PASSWORD
+        //         )
+        //     }
+        // }
+
+    }
+}
