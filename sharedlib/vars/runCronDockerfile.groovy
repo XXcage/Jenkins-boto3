@@ -6,7 +6,7 @@ def call() {
         }
         environment {
             imageName = 'rzlinux0/proj3'
-            jobName = 'BuildDockerfileRun-Jenkinsfile'
+            jobName = 'runBuildDockerfileRun-Jenkinsfile'
         }
         stages {
             stage('Get Last Successful Build') {
