@@ -12,6 +12,7 @@ def call() {
             stage('Get Last Successful Build') {
                 steps {
                     script {
+                        // Read the number of last successful build form permalinks file
                         def permalinksFile = "../../jobs/${env.jobName}/builds/permalinks"
                         env.lastSuccessfulBuildNum = sh(script: "cat ${permalinksFile} | grep lastSuccessfulBuild | awk '{print \$2}'", returnStdout: true).trim()
                         env.latestImage = "${env.imageName}:${env.lastSuccessfulBuildNum}"      
