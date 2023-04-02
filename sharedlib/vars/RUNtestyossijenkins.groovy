@@ -6,6 +6,9 @@ def call() {
       stages {
           stage('Hello') {
               steps {
+                script {
+                  sh 'echo hello world'
+                }
                   echo 'Hello World'
               }
           }
