@@ -32,11 +32,11 @@ pipeline {
         }
       }
     }
-    // stage('Push Docker Image') {
-    //   steps {
-    //     sh "docker push ${env.IMAGE_NAME}"
-    //   }
-    // }
+    stage('Push Docker Image') {
+      steps {
+        sh "docker push ${env.IMAGE_NAME}"
+      }
+    }
     stage('Run cat pylint output') {
       steps {
         script {
