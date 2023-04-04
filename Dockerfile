@@ -21,8 +21,7 @@ WORKDIR /app
 # COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 COPY . .
 COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
-RUN ls -a
-RUN ls -aln
+RUN ls -lan /opt/sonar-scanner/conf/
 COPY --from=linting /app /app
 RUN sonar-scanner 
 #        -Dsonar.projectKey=SonarqubeProj3 \
