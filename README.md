@@ -16,6 +16,13 @@ jenkins/jenkins:lts-jdk11
       `/.aws` folder for aws , with credentials and config files as per aws format  
       `/.dockerhub` folder for dockerhub, with dockerhub-credentials.properties file that contains username and password  
 
-
-- [ ] tidy
-- [ ] submit
+There are 2 main processes:
+* Main pipeline that can be run using shared library function:
+`@Library("proj3-sharedlib") _
+runBuildDockerfile()`
+or by SCM in jenkins using git and `Jenkinsfile`
+Build a dockerfile, lint test the code and rate it using sonarqube and publish the image to dockerhub.
+* Second pipeline that can be run using shared library function:
+`@Library("proj3-sharedlib") _
+runCronDockerfile()`
+or by SCM in jenkins using git and `cronJenkinsfile`
