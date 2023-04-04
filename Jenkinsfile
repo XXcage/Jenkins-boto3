@@ -17,7 +17,6 @@ pipeline {
       steps {
         dir('Proj3') {
           script {
-            sh "pwd"
             sh "docker build -t ${env.IMAGE_NAME} ."
           }      
         }
