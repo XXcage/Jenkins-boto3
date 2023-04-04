@@ -20,6 +20,7 @@ WORKDIR /app
 # RUN ls -aln
 # COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 # COPY . .
+COPY sonar-scanner.properties .
 COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 COPY sonar-project.properties /opt/sonar-scanner/conf/sonar-project.properties
 
