@@ -14,9 +14,9 @@ COPY --from=linting /app /app
 RUN sonar-scanner \
         -Dsonar.projectKey=SonarqubeProj3 \
         -Dsonar.sources=. \
-        -Dsonar.login=sqa_12c7817eb5049f467e7d7e7db50084a93b3e3888 \
-        -Dsonar.host.url=http://172.16.16.16:9000
-
+        -Dsonar.host.url=http://172.16.16.16:9000 \
+        -Dsonar.login=sqa_12c7817eb5049f467e7d7e7db50084a93b3e3888
+  
 # Stage 3: Production
 FROM python:3.9-alpine as production
 WORKDIR /app
