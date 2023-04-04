@@ -2,9 +2,11 @@
 
 >**Jenkins:** 
 
-![alt text][logo]
+
 [logo]: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1200px-Jenkins_logo.svg.png "Jenkins"
-![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1200px-Jenkins_logo.svg.png "Logo Title Text 1")
+![alt text][logo]
+
+[logo]: [https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1200px-Jenkins_logo.svg.png) "Logo Title Text 2"
 
 
 <pre>sudo docker run -itd --name jenkins --restart=always \
