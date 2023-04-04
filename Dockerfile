@@ -17,6 +17,7 @@ COPY sonar-project.properties /opt/sonar-scanner/conf/sonar-project.properties
 # RUN ls -lan /opt/sonar-scanner/conf/
 COPY --from=linting /app /app
 RUN sonar-scanner \
+        -Dsonar.projectBaseDir=/app \
         -Dsonar.projectKey=SonarqubeProj3 \
         -Dsonar.sources=. \
         -Dsonar.host.url=http://172.16.16.16:9000 \
