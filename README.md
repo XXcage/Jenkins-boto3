@@ -7,7 +7,6 @@
 [logo]: https://user-images.githubusercontent.com/5036939/92243072-ceaf0500-eefb-11ea-8006-1f7034b4167d.png "Jenkins"
 ![alt text][logo]
 
-[logo]: [https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Jenkins_logo.svg/1200px-Jenkins_logo.svg.png) "Logo Title Text 2"
 
 
 <pre>sudo docker run -itd --name jenkins --restart=always \
