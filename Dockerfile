@@ -20,6 +20,7 @@ WORKDIR /app
 # RUN ls -aln
 # COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 COPY . .
+COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 RUN ls -a
 RUN ls -aln
 COPY --from=linting /app /app
