@@ -8,7 +8,7 @@
 jenkins/jenkins:lts-jdk11  
 
 >sudo docker run -d --name sonarqube --restart=always -p 9000:9000 -p 9092:9092 sonarqube
-
+<pre>sudo docker run -d --name sonarqube --restart=always -p 9000:9000 -p 9092:9092 sonarqube</pre>
 <pre>
   ___/var/jenkins_home___ contains credentials for aws and dockerhub  
       ___.aws___ folder for aws , with credentials and config files as per aws format  
