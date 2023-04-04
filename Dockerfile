@@ -4,7 +4,7 @@ WORKDIR /app
 RUN pip install pylint
 # COPY requirements.txt .
 # RUN pip install -r requirements.txt
-# COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
+COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 # RUN ls -la
 # COPY ./sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 # RUN ls -la
@@ -18,7 +18,7 @@ RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt |
 FROM sonarsource/sonar-scanner-cli as sonar
 WORKDIR /app
 # RUN ls -aln
-COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
+# COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 RUN ls -aln
 COPY --from=linting /app /app
 RUN sonar-scanner \
