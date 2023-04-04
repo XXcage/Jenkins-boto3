@@ -4,6 +4,7 @@ WORKDIR /app
 RUN pip install pylint
 # COPY requirements.txt .
 # RUN pip install -r requirements.txt
+COPY ./sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 RUN ls -la
 COPY *.py ./
 RUN ls -aln
