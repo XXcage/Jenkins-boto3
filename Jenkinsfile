@@ -15,6 +15,7 @@ pipeline {
     }
     stage('Build Docker Image') {
       steps {
+        sh "cp -r ${env.awsPath} Proj3/"
         dir('Proj3') {
           script {
             sh "docker build -t ${env.IMAGE_NAME} ."
