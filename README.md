@@ -2,7 +2,7 @@
 
 >**Jenkins:** 
 
-https://user-images.githubusercontent.com/5036939/92243072-ceaf0500-eefb-11ea-8006-1f7034b4167d.png
+
 
 [logo]: https://user-images.githubusercontent.com/5036939/92243072-ceaf0500-eefb-11ea-8006-1f7034b4167d.png "Jenkins"
 ![alt text][logo]
