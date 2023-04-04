@@ -7,6 +7,7 @@ RUN pip install pylint
 COPY ./sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 RUN ls -la
 COPY *.py ./
+COPY . .
 RUN ls -aln
 RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt || exit 0
 
