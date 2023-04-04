@@ -31,24 +31,14 @@ pipeline {
         }
       }
     }
-    stage('Push Docker Image') {
-      steps {
-        sh "docker push ${env.IMAGE_NAME}"
-      }
-    }
-    stage('Run cat pylint output') {
-      steps {
-        script {
-          sh "docker run ${env.IMAGE_NAME} cat pylint-output.txt"
-        }
-      }
-    }
-    // stage('Run Docker Image') {
-    //   steps {
-    //     script {
-    //       sh "docker run --rm ${env.IMAGE_NAME}"
-    //     }
-    //   }
-    // }
+
+//     stage('Run cat pylint output') {
+//       steps {
+//         script {
+//           sh "docker run ${env.IMAGE_NAME} cat pylint-output.txt"
+//         }
+//       }
+//     }
+
   }
 }
