@@ -4,6 +4,7 @@ WORKDIR /app
 RUN pip install pylint
 # COPY requirements.txt .
 # RUN pip install -r requirements.txt
+RUN ls -la
 COPY *.py ./
 RUN ls -aln
 RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt || exit 0
