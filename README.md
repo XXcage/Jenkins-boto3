@@ -17,12 +17,12 @@ jenkins/jenkins:lts-jdk11
       `/.dockerhub` folder for dockerhub, with dockerhub-credentials.properties file that contains username and password  
 
 There are 2 main processes:
-* Main pipeline that can be run using shared library function:
-`@Library("proj3-sharedlib") _
+* Main pipeline that can be run using shared library function:   
+`@Library("proj3-sharedlib") _   
 runBuildDockerfile()`
-or by SCM in jenkins using git and `Jenkinsfile`
+or by SCM in jenkins using git and `Jenkinsfile`   
 Build a dockerfile, lint test the code and rate it using sonarqube and publish the image to dockerhub.
-* Second pipeline that can be run using shared library function:
-`@Library("proj3-sharedlib") _
-runCronDockerfile()`
+* Second pipeline that can be run using shared library function:   
+`@Library("proj3-sharedlib") _   
+runCronDockerfile()`   
 or by SCM in jenkins using git and `cronJenkinsfile`
