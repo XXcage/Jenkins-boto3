@@ -9,12 +9,12 @@ pipeline {
       steps {
         cleanWs()
         sh 'git clone -b main https://github.com/XXcage/Proj3.git'
-//         sh "cp -r ${env.awsPath} Proj3/"
 
       }
     }
     stage('Build Docker Image') {
       steps {
+        //copy aws creds for docker to be able to run .py using boto
         sh "cp -r ${env.awsPath} Proj3/"
         dir('Proj3') {
           script {
