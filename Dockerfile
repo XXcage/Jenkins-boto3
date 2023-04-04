@@ -5,6 +5,7 @@ RUN pip install pylint
 # COPY requirements.txt .
 # RUN pip install -r requirements.txt
 COPY *.py ./
+RUN ls -aln
 RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt || exit 0
 
 # Stage 2: SonarQube analysis
