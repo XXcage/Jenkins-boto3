@@ -12,6 +12,7 @@ RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt |
 FROM sonarsource/sonar-scanner-cli as sonar
 WORKDIR /app
 RUN ls -aln
+COPY ./sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 COPY --from=linting /app /app
 RUN ls -aln
 RUN sonar-scanner \
