@@ -24,13 +24,28 @@ pipeline {
       }
     }
 
-    stage('DockerHub Login and push') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-          sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
-          sh "docker push ${env.IMAGE_NAME}"
+//     stage('DockerHub Login and push') {
+//       steps {
+//         withCredentials([usernamePassword(credentialsId: 'DockerHubID', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+//           sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+//           sh "docker push ${env.IMAGE_NAME}"
+//         }
+//       }
+//     }
+    stage('DockerHub Login') {
+        steps {
+            script {
+                // Read the DockerHub credentials from the properties file
+                def dockerhubCredentials = readFile('/var/jenkins_home/.dockerhub/dockerhub-credentials.properties').trim()
+                // Split the contents of the file into an array of lines
+                def credentials = dockerhubCredentials.tokenize("\n")
+                // Set the DockerHub username and password as environment variables
+                env.DOCKERHUB_USERNAME = credentials[0].trim().split("=")[1].trim()
+                env.DOCKERHUB_PASSWORD = credentials[1].trim().split("=")[1].trim()
+                sh "docker login -u ${env.DOCKERHUB_USERNAME} -p ${env.DOCKERHUB_PASSWORD} https://index.docker.io/v1/"
+                sh "docker push ${env.IMAGE_NAME}"
+            }
         }
-      }
     }
 
 //     stage('Run cat pylint output') {
