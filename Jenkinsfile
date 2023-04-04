@@ -9,7 +9,7 @@ pipeline {
       steps {
         cleanWs()
         sh 'git clone -b main https://github.com/XXcage/Proj3.git'
-        sh "cp -r ${env.awsPath} Proj3/"
+//         sh "cp -r ${env.awsPath} Proj3/"
 
       }
     }
