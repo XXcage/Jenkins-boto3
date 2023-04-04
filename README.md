@@ -18,11 +18,11 @@ jenkins/jenkins:lts-jdk11
 
 There are 2 main processes:
 * Main pipeline that can be run using shared library function:   
-`@Library("proj3-sharedlib") _   
-runBuildDockerfile()`
+```@Library("proj3-sharedlib") _   
+runBuildDockerfile()```
 or by SCM in jenkins using git and `Jenkinsfile`   
 Build a dockerfile, lint test the code and rate it using sonarqube and publish the image to dockerhub.
 * Second pipeline that can be run using shared library function:   
-`@Library("proj3-sharedlib") _   
-runCronDockerfile()`   
+```@Library("proj3-sharedlib") _   
+runCronDockerfile()```   
 or by SCM in jenkins using git and `cronJenkinsfile`
