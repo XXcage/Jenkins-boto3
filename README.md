@@ -2,16 +2,6 @@
 
 >**Jenkins:** 
 
-
-![alt text]
-[logo]: https://user-images.githubusercontent.com/5036939/92243072-ceaf0500-eefb-11ea-8006-1f7034b4167d.png "Jenkins"
-
-![alt text][logo]
-
-[logo]: https://user-images.githubusercontent.com/5036939/92243072-ceaf0500-eefb-11ea-8006-1f7034b4167d.png "Logo Title Text 2"
-
-
-
 <pre>sudo docker run -itd --name jenkins --restart=always \
 -p 8080:8080 -p 50000:50000 \
 -v "/home/bckp/Desktop/jenkins:/var/jenkins_home" \
