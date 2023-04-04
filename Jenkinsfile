@@ -43,12 +43,12 @@ pipeline {
         }
       }
     }
-//     stage('Run Docker Image') {
-//       steps {
-//         script {
-//           sh "docker run --rm ${env.IMAGE_NAME}"
-//         }
-//       }
-    } 
+    // stage('Run Docker Image') {
+    //   steps {
+    //     script {
+    //       sh "docker run --rm ${env.IMAGE_NAME}"
+    //     }
+    //   }
+    // }
   }
 }
