@@ -4,23 +4,23 @@ WORKDIR /app
 RUN pip install pylint
 # COPY requirements.txt .
 # RUN pip install -r requirements.txt
-COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
-RUN ls -la
-COPY ./sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
-RUN ls -la
-RUN pwd
+# COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
+# RUN ls -la
+# COPY ./sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
+# RUN ls -la
+# RUN pwd
 COPY *.py ./
-COPY . .
-RUN ls -aln
+# COPY . .
+# RUN ls -aln
 RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt || exit 0
 
 # Stage 2: SonarQube analysis
 FROM sonarsource/sonar-scanner-cli as sonar
 WORKDIR /app
+# RUN ls -aln
+COPY sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 RUN ls -aln
-COPY ./sonar-scanner.properties /opt/sonar-scanner/conf/sonar-scanner.properties
 COPY --from=linting /app /app
-RUN ls -aln
 RUN sonar-scanner \
         -Dsonar.projectKey=SonarqubeProj3 \
         -Dsonar.sources=. \
