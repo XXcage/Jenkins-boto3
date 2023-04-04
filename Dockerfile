@@ -10,7 +10,9 @@ RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt |
 # Stage 2: SonarQube analysis
 FROM sonarsource/sonar-scanner-cli as sonar
 WORKDIR /app
+RUN ls -aln
 COPY --from=linting /app /app
+RUN ls -aln
 RUN sonar-scanner \
         -Dsonar.projectKey=SonarqubeProj3 \
         -Dsonar.sources=. \
