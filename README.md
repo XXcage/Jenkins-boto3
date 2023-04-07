@@ -17,6 +17,7 @@ jenkins/jenkins:lts-jdk11
       `/.dockerhub` folder for dockerhub, with dockerhub-credentials.properties file that contains username and password  
 
 There are 2 processes:   
+   
 <b>* Main pipeline that can be run using shared library function with the following steps:   </b>
 * github checkout - consists of cleaning workspace, and cloning repo.   
 * docker image build - consists of building image able to run a python code after linting it and posting to sonarqube.   
