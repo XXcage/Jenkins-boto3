@@ -31,7 +31,7 @@ or by SCM in jenkins using git and `Jenkinsfile`
 >while using aws config and credentials files, and using dockerhub-credentials file   
 
 <b>* Second pipeline that can be run using shared library function(and than runs on cron of 5 minutes) with the following steps:   </b>
-   
+
 * dockerhub login - consists of checking what is the latest successful image that was built
 * dockerhub pull and run the image.
 ```
