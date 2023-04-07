@@ -28,7 +28,7 @@ runBuildDockerfile()
 ```
 or by SCM in jenkins using git and `Jenkinsfile`   
 >Build a dockerfile, lint test the code and rate it using sonarqube and publish the image to dockerhub.
->while using aws config and credentials files, and using dockerhub-credentials file
+>while using aws config and credentials files, and using dockerhub-credentials file   
 <b>* Second pipeline that can be run using shared library function(and than runs on cron of 5 minutes) with the following steps:   </b>
    
 * dockerhub login - consists of checking what is the latest successful image that was built
