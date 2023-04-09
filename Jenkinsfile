@@ -1,22 +1,22 @@
 pipeline {
   agent any
   environment {
-    IMAGE_NAME = 'rzlinux0/proj3:${BUILD_NUMBER}'
+    IMAGE_NAME = 'rzlinux0/proj3-consul:${BUILD_NUMBER}'
     awsPath = "/var/jenkins_home/.aws"
   }
   stages {
     stage('Checkout') {
       steps {
         cleanWs()
-        sh 'git clone -b main https://github.com/XXcage/Proj3.git'
+        sh 'git clone -b Consul-Integration https://github.com/XXcage/Proj3.git'
 
       }
     }
     stage('Build Docker Image') {
       steps {
         //copy aws creds for docker to be able to run .py using boto
-        sh "cp -r ${env.awsPath} Proj3/"
-        dir('Proj3') {
+        sh "cp -r ${env.awsPath} Proj3-consul/"
+        dir('Proj3-consul') {
           script {
             sh "docker build -t ${env.IMAGE_NAME} ."
           }      
