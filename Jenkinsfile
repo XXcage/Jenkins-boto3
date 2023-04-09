@@ -15,8 +15,8 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         //copy aws creds for docker to be able to run .py using boto
-        sh "cp -r ${env.awsPath} Proj3-consul/"
-        dir('Proj3-consul') {
+        sh "cp -r ${env.awsPath} Proj3/"
+        dir('Proj3') {
           script {
             sh "docker build -t ${env.IMAGE_NAME} ."
           }      
