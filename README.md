@@ -21,7 +21,7 @@ There are 2 processes:
 <b>* Main pipeline that can be run using shared library function with the following steps:   </b>
 * github checkout - consists of cleaning workspace, and cloning repo.   
 * docker image build - consists of building image able to run a python code after linting it and posting to sonarqube.   
-* docker image push - consists of logging in to dockerhub(after parsing of the login details) and publishing image to dockerhub @ rzlinux0/proj3
+* docker image push - consists of logging in to dockerhub(after parsing of the login details) and publishing image to dockerhub <i>@ rzlinux0/proj3</i>
 ```
 @Library("proj3-sharedlib") _   
 runBuildDockerfile()
