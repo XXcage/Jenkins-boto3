@@ -21,7 +21,7 @@ There are 2 processes:
 <b>* Main pipeline that can be run using shared library function with the following steps:   </b>
 * github checkout - consists of cleaning workspace, and cloning repo.   
 * docker image build - consists of building image able to run a python code after linting it and posting to sonarqube.   
-* docker image push - consists of logging in to dockerhub(after parsing the login details) and publishing image to dockerhub @ rzlinux0/proj3
+* docker image push - consists of logging in to dockerhub(after parsing of the login details) and publishing image to dockerhub @ rzlinux0/proj3
 ```
 @Library("proj3-sharedlib") _   
 runBuildDockerfile()
@@ -32,7 +32,7 @@ or by SCM in jenkins using git and `Jenkinsfile`
 
 <b>* Second pipeline that can be run using shared library function(and than runs on cron of 5 minutes) with the following steps:   </b>
 
-* dockerhub login - consists of checking what is the latest successful image that was built
+* dockerhub login - consists of checking what is the latest successful image that was built, and logging in to dockerhub(after parsing of the login details)
 * dockerhub pull and run the image.
 ```
 @Library("proj3-sharedlib") _   
