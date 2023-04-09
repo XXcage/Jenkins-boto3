@@ -22,8 +22,8 @@ COPY .aws/ /root/.aws/
 COPY --from=sonar /app /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-# RUN apk add --no-cache --virtual .build-deps gcc musl-dev && \
-#    pip install --no-cache-dir -r requirements.txt && \
-#    apk del .build-deps
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev && \
+    pip install --no-cache-dir -r requirements.txt && \
+    apk del .build-deps
 COPY *.py ./
 CMD ["python3", "ec2InstanceDetails-json.py"]
