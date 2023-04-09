@@ -9,7 +9,9 @@ pipeline {
       steps {
         cleanWs()
         sh 'git clone -b Consul-Integration https://github.com/XXcage/Proj3.git'
-
+        sh 'pwd'
+        sh 'ls -an'
+        sh 'dir'
       }
     }
     stage('Build Docker Image') {
