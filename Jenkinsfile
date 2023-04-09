@@ -9,6 +9,7 @@ pipeline {
       steps {
         cleanWs()
         sh 'git clone -b Consul-Integration https://github.com/XXcage/Proj3.git'
+        sh 'echo $JENKINS_HOME'
         sh 'pwd'
         sh 'ls -an'
         sh 'dir'
