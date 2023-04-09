@@ -9,15 +9,15 @@ pipeline {
       steps {
         cleanWs()
         sh 'git clone -b Consul-Integration https://github.com/XXcage/Proj3.git'
-        sh 'echo $JENKINS_HOME'
-        sh 'pwd'
-        sh 'ls -an'
-        sh 'dir'
       }
     }
     stage('Build Docker Image') {
       steps {
         //copy aws creds for docker to be able to run .py using boto
+        sh 'echo $JENKINS_HOME'
+        sh 'pwd'
+        sh 'ls -an'
+        sh 'dir'
         sh "cp -r ${env.awsPath} Proj3/"
         dir('Proj3') {
           script {
