@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     IMAGE_NAME = 'rzlinux0/proj3-consul:${BUILD_NUMBER}'
-    awsPath = "/var/jenkins_home/creds/.aws"
+    awsPath = "/y/jenkins/creds/.aws"
   }
   stages {
     stage('Checkout') {
