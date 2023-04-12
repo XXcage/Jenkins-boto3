@@ -15,6 +15,8 @@ pipeline {
         stage('Retrieve AWS credentials from Consul') {
             steps {
                 script {
+                    sh "ls -an"
+                    sh "pwd"
                     // Retrieve AWS values from Consul
                     def aws_access_key_id = sh(returnStdout: true, script: 'consul kv get -http-addr=http://172.17.0.4:8500 aws/access_key_id').trim()
                     def aws_secret_access_key = sh(returnStdout: true, script: 'consul kv get -http-addr=http://172.17.0.4:8500 aws/secret_access_key').trim()
@@ -34,6 +36,8 @@ pipeline {
 
                 //copy aws creds for docker to be able to run .py using boto
                 //sh "cp -r ${env.awsPath} Proj3/"
+                sh "ls -an"
+                sh "pwd"
                 sh "cp -r /.aws Proj3/"
                 dir('Proj3') {
                     script {
