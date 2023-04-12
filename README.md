@@ -40,5 +40,5 @@ runCronDockerfile()
 or by SCM in jenkins using git and `cronJenkinsfile`
 >Pull and run a last successful image built by First pipeline.
 
-consul-integration branch retrieves credentials from consul KV instead of files
+consul-integration branch retrieves credentials from consul KV.    
 main branch uses folders with files for authentication containing aws and dockerhub credentials.
