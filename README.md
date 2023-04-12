@@ -18,7 +18,7 @@ jenkins/jenkins:lts-jdk11
 
 There are 2 processes:   
    
-<b>* Main pipeline that can be run using shared library function with the following steps:   </b>
+<b>* First pipeline that can be run using shared library function with the following steps:   </b>
 * github checkout - consists of cleaning workspace, and cloning repo.   
 * docker image build - consists of building image able to run a python code after linting it and posting to sonarqube.   
 * docker image push - consists of logging in to dockerhub(after parsing of the login details) and publishing image to dockerhub <i>@ rzlinux0/proj3</i>
@@ -39,4 +39,7 @@ or by SCM in jenkins using git and `Jenkinsfile`
 runCronDockerfile()
 ```   
 or by SCM in jenkins using git and `cronJenkinsfile`
->Pull and run a last successful image built by main pipeline.
+>Pull and run a last successful image built by First pipeline.
+
+main branch uses folders with files for authentication containing aws and dockerhub credentials.
+consul-integration branch retrieves credentials from consul KV instead of files
