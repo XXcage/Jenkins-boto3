@@ -38,7 +38,7 @@ pipeline {
                 //sh "cp -r ${env.awsPath} Proj3/"
                 sh "ls -an"
                 sh "pwd"
-                sh "cp -r /.aws Proj3/"
+                sh "cp -r .aws Proj3/"
                 dir('Proj3') {
                     script {
                     sh "docker build -t ${env.IMAGE_NAME} ."
