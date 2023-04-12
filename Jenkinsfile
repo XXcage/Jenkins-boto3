@@ -37,8 +37,8 @@ pipeline {
                           //sh "docker push ${env.IMAGE_NAME}"
 
                           // Fetch DockerHub username and password from Consul
-                          env.DOCKERHUB_USERNAME = sh(returnStdout: true, script: 'consul kv get dockerhub/DOCKER_USERNAME').trim()
-                          env.DOCKERHUB_PASSWORD = sh(returnStdout: true, script: 'consul kv get dockerhub/DOCKER_PASSWORD').trim()
+                          env.DOCKERHUB_USERNAME = sh(returnStdout: true, script: 'consul kv get -http-addr=http://172.17.0.4:8500 dockerhub/DOCKER_USERNAME').trim()
+                          env.DOCKERHUB_PASSWORD = sh(returnStdout: true, script: 'consul kv get -http-addr=http://172.17.0.4:8500 dockerhub/DOCKER_PASSWORD').trim()
                           sh "docker login -u ${env.DOCKERHUB_USERNAME} -p ${env.DOCKERHUB_PASSWORD} https://index.docker.io/v1/"
 
 
