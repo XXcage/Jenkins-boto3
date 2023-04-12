@@ -8,7 +8,7 @@ RUN pylint --output-format=parseable --fail-under=9.0 *.py > pylint-output.txt |
 # Stage 2: SonarQube analysis
 FROM sonarsource/sonar-scanner-cli as sonar
 WORKDIR /app
-RUN curl http://172.17.0.2:9000
+RUN curl http://172.17.0.3:9000
 COPY sonar-project.properties .
 
 # RUN ls -lan /opt/sonar-scanner/conf/
