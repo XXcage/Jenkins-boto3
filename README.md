@@ -13,7 +13,7 @@ jenkins/jenkins:lts-jdk11
 <pre>sudo docker run -d --name sonarqube --restart=always -p 9000:9000 -p 9092:9092 sonarqube</pre>
 
 >**Consul**
-<pre>sudo docker run -d --name consul -p 8500:8500 -p 8600:8600/udp consul
+<pre>sudo docker run -d --name consul -p 8500:8500 -p 8600:8600/udp consul</pre>
 
 There are 2 processes:   
    
