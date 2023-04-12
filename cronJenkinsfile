@@ -1,8 +1,8 @@
     pipeline {
         agent any
-        triggers {
-            cron('*/5 * * * *')
-        }
+//        triggers {
+//            cron('*/5 * * * *')
+//        }
         environment {
             imageName = 'rzlinux0/proj3-consul'
             jobName = 'Consul-Intergration'
