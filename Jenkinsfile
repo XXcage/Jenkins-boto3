@@ -40,13 +40,13 @@ pipeline {
         }
     }
 
-//     stage('Run cat pylint output') {
-//       steps {
-//         script {
-//           sh "docker run ${env.IMAGE_NAME} cat pylint-output.txt"
-//         }
-//       }
-//     }
+    stage('Run cat pylint output') {
+      steps {
+        script {
+          sh "docker run ${env.IMAGE_NAME} cat pylint-output.txt"
+        }
+      }
+    }
 
   }
 }
